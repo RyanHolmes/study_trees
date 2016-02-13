@@ -1,17 +1,7 @@
 $(document).ready(function(){
   $("#json_render").width($("#mainTree").width());
-  var obj = null;
-  // if (localStorage.getItem("data")){
-  //   obj = JSON.parse(localStorage.getItem("data"));
-  // }else {
-    obj = getData();
-  // }
-  if(typeof(Storage) !== "undefined") {
-    canSave = true;
-  } else {
-      canSave = false;
-      alert('Sorry! No Web Storage support..');
-  }
+  var obj = getData();
+
   $('#modalForNote').modal({ show: false});
   $('#modalForSuccess').modal({ show: false});
   $('#modalForDownload').modal({ show: false});
@@ -66,10 +56,12 @@ function customMenu(node) {
         deleteItem: { // The "delete" menu item
             label: "Delete",
             action: function () {
-              getTree().tree.delete_node([node]);
+              if(getTree().selected.parent != '#'){ //no deleting the root
+                getTree().tree.delete_node([node]);
+              }
             }
         },
-        markItem: { // mark all children RYANTODO
+        markItem: { //mark items
             label: mark,
             action: function () {
                 if(getTree().selected.data.marked == true){
@@ -84,13 +76,13 @@ function customMenu(node) {
                 }
             }
         },
-        iterateItem: {
+        iterateItem: { //iterate in a specific folder
           label: "Iterate",
           action: function (){
             iterateOnNode(getTree().selected);
           }
         },
-        noteItem: {
+        noteItem: { //add or edit notes on leafs
           label: "Note",
           action: function (){
             $('#modalNote').val("");
@@ -104,7 +96,7 @@ function customMenu(node) {
             $('#modalForNote').modal('show');
           }
         },
-        downloadItem: {
+        downloadItem: { //download a text version of all in folder
           label: "Download",
           action: function() {
             $('#modalDownloadTitle').text(getTree().selected.text + " Download");
@@ -130,7 +122,9 @@ function save(){
     url: "http://localhost:3000/data",
     data: { value: data },
     success: function(r) {
-       console.log(r);
+       if(r != 'OK'){
+         alert('Data failed to save')
+       }
     }
   });
 };
