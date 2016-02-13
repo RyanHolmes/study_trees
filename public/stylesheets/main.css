@@ -1,0 +1,39 @@
+/*text area for json*/
+/*html {
+  height: 100;
+}*/
+#json_render {
+  height: 300px;
+}
+
+/*everything - container*/
+#mainTree {
+
+}
+
+#tree {
+
+}
+
+#tip {
+  color: gray;
+}
+
+.dropDownElt {
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.dropDownElt:hover {
+  background-color: grey;
+}
+
+.hideOverflow {
+    overflow: scroll;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.vertOverflow {
+  overflow-y: scroll;
+}
