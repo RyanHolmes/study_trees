@@ -160,6 +160,11 @@ function makeTextFile(text, name){
   var data = new Blob([text], {type: 'text/plain'});
   link.href = URL.createObjectURL(data);
   link.download = name;
+  var str = "";
+  str += "<div class='alert alert-success'>";
+  str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+  str +=  "<strong>Success:</strong> Data Saved! </div>";
+  $('#createAlert').html(str);
 };
 
 function addNote() {

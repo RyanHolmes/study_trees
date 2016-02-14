@@ -47,7 +47,7 @@
 			  </div>
 			</nav>
 			<div id="saveAlert">
-				
+
 			</div>
 
 			<div class="row" id="tree">
@@ -182,11 +182,13 @@
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        <h3 class="modal-title" id="modalDownloadTitle"></h3>
 		      </div>
-		      <div class="modal-body">
-					<!-- TODO: alert for creation of file -->
 
+		      <div class="modal-body">
+						<div id="createAlert">
+						</div>
 						<textarea id="downloadName" style="width:100%;"> </textarea>
 		      </div>
+
 		      <div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 						<button type="button" class="btn btn-info" onclick="createFile();"> Create File </button>
