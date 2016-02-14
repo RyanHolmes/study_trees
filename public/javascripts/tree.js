@@ -163,7 +163,7 @@ function makeTextFile(text, name){
   var str = "";
   str += "<div class='alert alert-success'>";
   str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
-  str +=  "<strong>Success:</strong> Data Saved! </div>";
+  str +=  "<strong>Success:</strong> File Created! </div>";
   $('#createAlert').html(str);
 };
 
