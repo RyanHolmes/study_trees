@@ -176,11 +176,14 @@ function byDateInit(period){
 };
 
 function showAnswer(){
-  $('#hiddenAnswer').removeClass('hidden');
-  $('#noteToShow').text(getNode().data.note);
+  if(getNode() != null){
+    $('#hiddenAnswer').removeClass('hidden');
+    $('#noteToShow').text(getNode().data.note);
+  }
 };
 
 function success(){
+  if(getNode() != null){
     getNode().data.success += 1;
     localSuccess += 1;
     if (getNode().data.success >= 30){ //RYANTODO value has to be set somewhere
@@ -189,12 +192,15 @@ function success(){
     else {
       nextNode(isRandom);
     }
+  }
 };
 
 function failure(){
-  getNode().data.failure += 1;
-  localFailure += 1;
-  nextNode(isRandom);
+  if(getNode() != null){
+    getNode().data.failure += 1;
+    localFailure += 1;
+    nextNode(isRandom);
+  }
 };
 
 function markItem(){

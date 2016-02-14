@@ -31,7 +31,11 @@ function toggleContainers(){
 
 // returns current node from iteration page
 function getNode(){
-  return $('#tree').jstree(true).get_node(currentNode.id);
+  if(currentNode){
+    return $('#tree').jstree(true).get_node(currentNode.id);
+  }else {
+    return null;
+  }
 };
 
 function convertDate(d){

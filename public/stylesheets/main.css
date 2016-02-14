@@ -2,6 +2,12 @@
 /*html {
   height: 100;
 }*/
+/*$palette-green: #17A768;
+$palette-orange: #F1601D;
+$palette-yellow: #F1AD1D;
+$primary-light: #E7E0D2;
+$primary-beige: #BBAE93;*/
+
 #json_render {
   height: 300px;
 }
@@ -11,8 +17,12 @@
 
 }
 
-#tree {
+#saveBtn:hover {
+  /*color: primary-light;*/
+}
 
+#tree {
+  // background: primary-light-beige;
 }
 
 #tip {
