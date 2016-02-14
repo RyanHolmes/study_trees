@@ -125,6 +125,13 @@ function save(){
        if(r != 'OK'){
          alert('Data failed to save')
        }
+       else {
+         var str = "";
+         str += "<div class='alert alert-success'>";
+ 				 str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+ 				 str +=  "<strong>Success:</strong> Data Saved! </div>";
+         $('#saveAlert').html(str);
+       }
     }
   });
 };
