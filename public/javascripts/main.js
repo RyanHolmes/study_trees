@@ -27,6 +27,7 @@ function getTree(){
 function toggleContainers(){
   $('#mainTree').toggleClass("hidden");
   $('#mainIterate').toggleClass("hidden");
+  $('#iterateNav').toggleClass("hidden");
 };
 
 // returns current node from iteration page
