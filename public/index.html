@@ -33,7 +33,7 @@
 	<body class="body">
 
 		<div class="" id="mainTree">
-			<nav class="navbar navbar-default">
+			<nav class="navbar navbar-default" id=homeNav>
 			  <div class="container">
 			    <ul class="nav navbar-nav">
 						<li><a href="#" class="pull-left"><img src="/images/folder.png"></a></li>
@@ -50,10 +50,18 @@
 
 			<div id="saveAlert"> </div>
 
-			<div class="row" id="tree" style="margin-left:50px;">
+			<div class="container">
+				<div class="row col-md-6" id="tree" style="overflow-y:scroll; border:solid; margin-right:5px;">
 
-			<!--  LOADS JSON DATA-->
+				<!--  LOADS JSON DATA-->
 
+				</div>
+				<div class="col-md-6" style="margin-left:5px;">
+					<div id="updateNoteAlert"></div>
+					<h4 class="modal-title" id="noteTitle" style="margin-bottom:10px;"> Note Editor </h4>
+					<textarea id="noteEditor" style="width:100%; overflow-y:scroll;"></textarea>
+					<button type="button" class="btn btn-info" data-dismiss="modal" onclick="addNote();" id="updateNote">Update Note</button>
+				</div>
 			</div>
 
 		</div>

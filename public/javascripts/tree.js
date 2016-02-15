@@ -1,5 +1,15 @@
 $(document).ready(function(){
+  // On select
+  $('#noteEditor').height(window.innerHeight - $('#homeNav').height() - $('#updateNote').height() - 120);
+  $('#tree').height(window.innerHeight - $('#homeNav').height());
   $("#json_render").width($("#mainTree").width());
+
+  $('#tree').on("select_node.jstree", function (e, node) {
+    console.log(node.node);
+    $('#noteTitle').text(node.node.text + " ~Note");
+    $('#noteEditor').val(node.node.data.note);
+  });
+
   var obj = getData();
 
   $('#modalForNote').modal({ show: false});
@@ -82,20 +92,6 @@ function customMenu(node) {
             iterateOnNode(getTree().selected);
           }
         },
-        noteItem: { //add or edit notes on leafs
-          label: "Note",
-          action: function (){
-            $('#modalNote').val("");
-            $('#modalNoteTitle').text(getTree().selected.text + " ~Note");
-            if(getTree().selected.data.note != null){
-              $('#modalNote').val(getTree().selected.data.note);
-            }
-            else if(getTree().selected.data.note == null){
-              $('#modalNote').val("");
-            }
-            $('#modalForNote').modal('show');
-          }
-        },
         downloadItem: { //download a text version of all in folder
           label: "Download",
           action: function() {
@@ -136,6 +132,7 @@ function save(){
   });
 };
 
+
 function createFile(){
   tree = $("#tree").jstree(true).get_json('#', { 'flat': true });
   var e = getTree().selected;
@@ -168,7 +165,12 @@ function makeTextFile(text, name){
 };
 
 function addNote() {
-  getTree().selected.data.note = $('#modalNote').val();
+  getTree().selected.data.note = $('#noteEditor').val();
+  var str = "";
+  str += "<div class='alert alert-success'>";
+  str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+  str +=  "<strong>Success:</strong> Note Saved! </div>";
+  $('#updateNoteAlert').html(str);
 };
 
 function nestedMark(node, mark, icon){
