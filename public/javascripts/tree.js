@@ -5,7 +5,6 @@ $(document).ready(function(){
   $("#json_render").width($("#mainTree").width());
 
   $('#tree').on("select_node.jstree", function (e, node) {
-    console.log(node.node);
     $('#noteTitle').text(node.node.text + " ~Note");
     $('#noteEditor').val(node.node.data.note);
   });
@@ -55,6 +54,7 @@ function customMenu(node) {
             var today = new Date();
             getTree().tree.get_node(newNode).data = { "create_date": convertDate(today), "marked": false, "success": 0, "failure": 0, "audio_path": null, "note": null, "other": null };
             getTree().tree.set_icon(getTree().tree.get_node(newNode), '../images/folder.png');
+            getTree().tree.edit(newNode);
           }
         },
         renameItem: { // The "rename" menu item
