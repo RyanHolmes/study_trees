@@ -1,6 +1,7 @@
 var localSuccess = 0;
 var localFailure = 0;
 var backupLeafs = [];
+var failedLeafs = [];
 
 function initIterate() {
   toggleContainers();
@@ -201,6 +202,7 @@ function failure(){
     localFailure += 1;
     nextNode(isRandom);
   }
+  failedLeafs.push(getNode()); //RYANTODO
 };
 
 function markItem(){

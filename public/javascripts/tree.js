@@ -110,7 +110,7 @@ function customMenu(node) {
     return items;
 };
 
-function save(){
+function save(e){
   var data = JSON.stringify(getTree().tree.get_json('#', { 'flat': true }));
   var d = getTree().tree.get_json('#', { 'flat': true });
   $.ajax({
@@ -121,7 +121,7 @@ function save(){
        if(r != 'OK'){
          alert('Data failed to save')
        }
-       else {
+       else if(e) {
          var str = "";
          str += "<div class='alert alert-success'>";
  				 str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
@@ -165,12 +165,15 @@ function makeTextFile(text, name){
 };
 
 function addNote() {
-  getTree().selected.data.note = $('#noteEditor').val();
+  if($('#noteEditor').val() != ""){
+    getTree().selected.data.note = $('#noteEditor').val();
+  }
   var str = "";
   str += "<div class='alert alert-success'>";
   str +=  "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
   str +=  "<strong>Success:</strong> Note Saved! </div>";
   $('#updateNoteAlert').html(str);
+  // save(false);
 };
 
 function nestedMark(node, mark, icon){

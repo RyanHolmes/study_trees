@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title> Study Trees </title>
+		<title> Remetry </title>
 
 		 <!-- scripts -->
 		<script src="../javascripts/jquery-2.1.4.js"></script>
@@ -12,6 +12,7 @@
 		<script src="../javascripts/iterate.js"></script>
 		<script src="../javascripts/main.js"></script>
 		<script src="../javascripts/node.js"></script>
+		<script src="../javascripts/sweetalert.min.js"></script>
 		<!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
 
 		<!-- Styles -->
@@ -20,6 +21,7 @@
 		<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 		<link rel="stylesheet" href="../js_tree/dist/themes/default/style.min.css">
+		<link rel="stylesheet" type="text/css" href="../stylesheets/sweetalert.css">
 		<!-- <link rel="icon" href="images/favicon.ico"> -->
 
 		<!-- Metadata -->
@@ -37,7 +39,7 @@
 			  <div class="container">
 			    <ul class="nav navbar-nav">
 						<li><a href="#" class="pull-left"><img src="/images/folder.png"></a></li>
-			      <li id="saveBtn"><a href="#" onclick="save();">Save</a></li>
+			      <li id="saveBtn"><a href="#" onclick="save(true);">Save</a></li>
 						<li><a href="#" onclick="initIterate();">Iterate</a></li>
 			    </ul>
 					<ul>
@@ -133,17 +135,18 @@
 				  </div>
 				</div>
 				<button class="btn btn-info" onclick="restart();" id="restartBtn"> Restart </button>
+				<button class="btn btn-info" onclick="restartFailed();" id="restartBtn"> Iterate Failed </button>
 			</div>
 
 		</div>
 
 		<!-- ##################### MODALS ########################### -->
 
-		<div id="modalForNote" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
+		<!-- <div id="modalForNote" class="modal fade" role="dialog">
+		  <div class="modal-dialog"> -->
 
 		    <!-- Modal content-->
-		    <div class="modal-content">
+		    <!-- <div class="modal-content">
 		      <div class="modal-header">
 		        <button type="button" class="close" data-dismiss="modal">&times;</button>
 		        <h4 class="modal-title" id="modalNoteTitle"></h4>
@@ -158,7 +161,7 @@
 		    </div>
 
 		  </div>
-		</div>
+		</div> -->
 
 		<div id="modalForSuccess" class="modal fade" role="dialog">
 		  <div class="modal-dialog">

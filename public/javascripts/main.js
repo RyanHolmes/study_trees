@@ -6,6 +6,9 @@
 // 4) Different Icons for different types of notes
 // 5) Dashboard for user stats / homepage
 // 6) Settings panel -> how many successes unitl mark? custom user set icons? etc
+// 7) Retry Failed leafs
+// 8) move by date dropdown to buttons
+// 9) better alerts with timeouts
 // ################################################################################################
 
 var canSave = false;
@@ -80,3 +83,8 @@ window.onkeyup = function(e) {
      }
    }
 }
+
+// function closeAlert(selector, delay) {
+//    var alert = $(selector);
+//    window.setTimeout(function() { alert.alert('close') }, delay);
+// }
