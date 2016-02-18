@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+	<head>
+		<title> Remetry - Notes </title>
+
+		 <!-- scripts -->
+		<script src="../javascripts/jquery-2.1.4.js"></script>
+		<script src="../javascripts/bootstrap.min.js"></script>
+		<script src="../js_tree/dist/jstree.js"></script>
+		<script src="../javascripts/tree.js"></script>
+		<script src="../javascripts/data.js"></script>
+		<script src="../javascripts/iterate.js"></script>
+		<script src="../javascripts/main.js"></script>
+		<script src="../javascripts/node.js"></script>
+		<!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
+
+		<!-- Styles -->
+		<link rel="stylesheet" href="../stylesheets/main.css">
+		<link rel="stylesheet" href="../stylesheets/bootstrap.min.css">
+		<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
+		<link rel="stylesheet" href="../js_tree/dist/themes/default/style.min.css">
+		<!-- <link rel="icon" href="images/favicon.ico"> -->
+
+		<!-- Metadata -->
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+	</head>
+
+	<body class="body">
+
+		<div class="" id="mainTree">
+			<nav class="navbar navbar-default" id=homeNav>
+			  <div class="container">
+			    <ul class="nav navbar-nav">
+						<li><a href="#" class="pull-left"><img src="/images/folder.png"></a></li>
+						<li><a href="http://localhost:3000/dashboard">Dashboard</a></li>
+						<li><a href="#" class="active" >Tree</a></li>
+						<li><a href="http://localhost:3000/iterate" onclick="initIterate();">Iterate</a></li>
+						<li><a href="#" onclick="logout();">Log Out</a></li>
+			    </ul>
+					<ul>
+						<form class="navbar-form pull-right" role="search">
+              <input type="text" class="form-control" placeholder="Search" name="q" id="search-input">
+            </form>
+					</ul>
+			  </div>
+			</nav>
+
+			<div id="saveAlert"> </div>
+			<div class="container">
+				<div class="row col-md-6" id="tree" style="overflow-y:scroll; border:solid; margin-right:5px;">
+
+				<!--  LOADS JSON DATA-->
+
+				</div>
+				<div class="col-md-6" style="margin-left:5px;">
+					<button class="btn btn-info" id="saveBtn" href="#" onclick="save(true);">Save Tree</button>
+					<div id="updateNoteAlert"></div>
+					<h4 class="modal-title" id="noteTitle" style="margin-bottom:10px;"> Note Editor </h4>
+					<textarea id="noteEditor" style="width:100%; overflow-y:scroll;"></textarea>
+					<button type="button" class="btn btn-info" data-dismiss="modal" onclick="addNote();" id="updateNote">Update Note</button>
+				</div>
+			</div>
+
+		</div>
+
+		<div id="modalForDownload" class="modal fade" role="dialog">
+		  <div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h3 class="modal-title" id="modalDownloadTitle"></h3>
+		      </div>
+
+		      <div class="modal-body">
+						<div id="createAlert">
+						</div>
+						<textarea id="downloadName" style="width:100%;"> </textarea>
+		      </div>
+
+		      <div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-info" onclick="createFile();"> Create File </button>
+						<a download="" id="downloadlink" class="btn btn-info"> Download File </a>
+		      </div>
+		    </div>
+
+		  </div>
+		</div>
+
+	</body>
+
+</html>

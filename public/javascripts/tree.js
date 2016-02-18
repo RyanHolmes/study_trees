@@ -89,7 +89,8 @@ function customMenu(node) {
         iterateItem: { //iterate in a specific folder
           label: "Iterate",
           action: function (){
-            iterateOnNode(getTree().selected);
+            window.location.href = 'http://localhost:3000/iterate'; //RYANTODO: call tehe fucntion below
+            //iterateOnNode(getTree().selected);
           }
         },
         downloadItem: { //download a text version of all in folder
@@ -113,6 +114,7 @@ function customMenu(node) {
 function save(e){
   var data = JSON.stringify(getTree().tree.get_json('#', { 'flat': true }));
   var d = getTree().tree.get_json('#', { 'flat': true });
+  tree = d;
   $.ajax({
     type: "POST",
     url: "http://localhost:3000/data",

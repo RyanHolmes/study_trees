@@ -16,7 +16,7 @@ var allLeafs = [];
 var nodeLeafs = [];
 var size = 1;
 var isRandom = true;
-var tree; //DO NOT MODIFY
+// var tree; //DO NOT MODIFY
 var day = 86400000;//millseconds in a day
 var currentNode;
 
@@ -25,12 +25,6 @@ function getTree(){
     "tree": $('#tree').jstree(true),
     "selected": $('#tree').jstree(true).get_node($('#tree').jstree(true).get_selected())
   }
-};
-
-function toggleContainers(){
-  $('#mainTree').toggleClass("hidden");
-  $('#mainIterate').toggleClass("hidden");
-  $('#iterateNav').toggleClass("hidden");
 };
 
 // returns current node from iteration page
@@ -82,9 +76,4 @@ window.onkeyup = function(e) {
        showAnswer();
      }
    }
-}
-
-// function closeAlert(selector, delay) {
-//    var alert = $(selector);
-//    window.setTimeout(function() { alert.alert('close') }, delay);
-// }
+};

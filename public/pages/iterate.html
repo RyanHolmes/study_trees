@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title> Remetry </title>
+		<title> Remetry - Testing</title>
 
 		 <!-- scripts -->
 		<script src="../javascripts/jquery-2.1.4.js"></script>
@@ -12,7 +12,6 @@
 		<script src="../javascripts/iterate.js"></script>
 		<script src="../javascripts/main.js"></script>
 		<script src="../javascripts/node.js"></script>
-		<script src="../javascripts/sweetalert.min.js"></script>
 		<!-- <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js"></script> -->
 
 		<!-- Styles -->
@@ -21,7 +20,6 @@
 		<link rel="stylesheet" href="../stylesheets/font-awesome.min.css">
 		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"> -->
 		<link rel="stylesheet" href="../js_tree/dist/themes/default/style.min.css">
-		<link rel="stylesheet" type="text/css" href="../stylesheets/sweetalert.css">
 		<!-- <link rel="icon" href="images/favicon.ico"> -->
 
 		<!-- Metadata -->
@@ -33,14 +31,15 @@
 	</head>
 
 	<body class="body">
-
-		<div class="" id="mainTree">
+    <div class="">
 			<nav class="navbar navbar-default" id=homeNav>
 			  <div class="container">
 			    <ul class="nav navbar-nav">
-						<li><a href="#" class="pull-left"><img src="/images/folder.png"></a></li>
-			      <li id="saveBtn"><a href="#" onclick="save(true);">Save</a></li>
-						<li><a href="#" onclick="initIterate();">Iterate</a></li>
+						<li><a href="http://localhost:3000" class="pull-left"><img src="/images/folder.png"></a></li>
+						<li><a href="http://localhost:3000/dashboard">Dashboard</a></li>
+						<li><a href="http://localhost:3000/tree" >Tree</a></li>
+						<li><a href="#">Iterate</a></li>
+						<li><a href="#" onclick="logout();">Log Out</a></li>
 			    </ul>
 					<ul>
 						<form class="navbar-form pull-right" role="search">
@@ -49,50 +48,22 @@
 					</ul>
 			  </div>
 			</nav>
-
-			<div id="saveAlert"> </div>
-
-			<div class="container">
-				<div class="row col-md-6" id="tree" style="overflow-y:scroll; border:solid; margin-right:5px;">
-
-				<!--  LOADS JSON DATA-->
-
-				</div>
-				<div class="col-md-6" style="margin-left:5px;">
-					<div id="updateNoteAlert"></div>
-					<h4 class="modal-title" id="noteTitle" style="margin-bottom:10px;"> Note Editor </h4>
-					<textarea id="noteEditor" style="width:100%; overflow-y:scroll;"></textarea>
-					<button type="button" class="btn btn-info" data-dismiss="modal" onclick="addNote();" id="updateNote">Update Note</button>
-				</div>
-			</div>
-
-		</div>
-
+    </div>
 		<!-- THIS WILL BE WHERE YOU ITERATE -->
+		<div id="tree" class="hidden"></div>
 
-			<nav class="navbar navbar-default hidden" id="iterateNav">
-			  <div class="container">
-			    <ul class="nav navbar-nav">
-			      <li><a href="#" onclick="toggleContainers();">Tree</a></li>
-			      <li class="dropdown">
-							<a class="dropdown-toggle" data-toggle="dropdown"> By Date <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li class="dropDownElt" onclick="byDateInit('week');"> This Week </li>
-								<li class="dropDownElt" onclick="byDateInit('oneMonth');"> This Month </li>
-								<li class="dropDownElt" onclick="byDateInit('twoMonths');"> Last 2 Months </li>
-								<li class="dropDownElt" onclick="byDateInit('threeMonths');"> Last 3 Months </li>
-								<li class="dropDownElt" onclick="byDateInit('sixMonths');"> Last 6 Months </li>
-								<li class="dropDownElt" onclick="byDateInit('year');"> This Year </li>
-								<li class="divider"></li>
-								<li class="dropDownElt" onclick="iterateAll();"> All </li>
-							</ul>
-						</li>
-			    </ul>
-			  </div>
-			</nav>
-
-		<div class="container hidden" id="mainIterate">
+		<div class="container" id="mainIterate">
 			<div class="row" id="mainIterater">
+				<ul class="nav nav-pills">
+					<li id="week" onclick="byDateInit('week');"> <button class="btn btn-info"> This Week </button></li>
+					<li id="month" onclick="byDateInit('oneMonth');"> <button class="btn btn-info"> This Month </button></li>
+					<li id="twoMonths" onclick="byDateInit('twoMonths');"> <button class="btn btn-info"> Last 2 Months </button></li>
+					<li id="threeMonths" onclick="byDateInit('threeMonths');"> <button class="btn btn-info"> Last 3 Months </button></li>
+					<li id="halfYear" onclick="byDateInit('sixMonths');"> <button class="btn btn-info"> Last 6 Months </button></li>
+					<li id="year" onclick="byDateInit('year');"> <button class="btn btn-info"> This Year </button></li>
+					<li id="all" onclick="iterateAll();"> <button class="btn btn-info"> All </button></li>
+				</ul>
+
 			<label><input type="checkbox" value="" id="randomCheckbox" checked onchange="random()"> Random Iteration </label>
 				<div class="jumbotron" id="allLeafs">
 
@@ -141,28 +112,6 @@
 		</div>
 
 		<!-- ##################### MODALS ########################### -->
-
-		<!-- <div id="modalForNote" class="modal fade" role="dialog">
-		  <div class="modal-dialog"> -->
-
-		    <!-- Modal content-->
-		    <!-- <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h4 class="modal-title" id="modalNoteTitle"></h4>
-		      </div>
-		      <div class="modal-body">
-		        <textarea id="modalNote" style="width:100%; height:200px;"> </textarea>
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-info" data-dismiss="modal" onclick="addNote();">Add Note</button>
-		      </div>
-		    </div>
-
-		  </div>
-		</div> -->
-
 		<div id="modalForSuccess" class="modal fade" role="dialog">
 		  <div class="modal-dialog">
 
@@ -178,32 +127,6 @@
 		      <div class="modal-footer">
 						<button type="button" class="btn btn-info" data-dismiss="modal">Ignore</button>
 						<button type="button" class="btn btn-info" data-dismiss="modal" onclick="markItem();">Mark Item</button>
-		      </div>
-		    </div>
-
-		  </div>
-		</div>
-
-		<div id="modalForDownload" class="modal fade" role="dialog">
-		  <div class="modal-dialog">
-
-		    <!-- Modal content-->
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		        <h3 class="modal-title" id="modalDownloadTitle"></h3>
-		      </div>
-
-		      <div class="modal-body">
-						<div id="createAlert">
-						</div>
-						<textarea id="downloadName" style="width:100%;"> </textarea>
-		      </div>
-
-		      <div class="modal-footer">
-						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-						<button type="button" class="btn btn-info" onclick="createFile();"> Create File </button>
-						<a download="" id="downloadlink" class="btn btn-info"> Download File </a>
 		      </div>
 		    </div>
 

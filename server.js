@@ -18,16 +18,36 @@ app.post('/data', function(req, res){
       console.log(err);
     }
   });
+  fs.writeFile(__dirname + '/data.txt', req.body.value, function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
 
-});
-
-app.get('/', function(res, req){
-  res.send(data);
-  res.sendStatus(200);
 });
 
 app.listen(3000, function(){
   console.log("running on port localhost:3000");
 });
 
-app.get('/', function(){});
+app.get('/data', function(req, res){
+  var data = fs.readFileSync(__dirname + '/data.txt');
+  res.send(data);
+  res.sendStatus(200);
+});
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/public/pages/landing.html');
+});
+
+app.get('/iterate', function(req, res){
+  res.sendFile(__dirname + '/public/pages/iterate.html');
+});
+
+app.get('/tree', function(req, res){
+  res.sendFile(__dirname + '/public/pages/tree.html');
+});
+
+app.get('/dashboard', function(req, res){
+  res.sendFile(__dirname + '/public/pages/dashboard.html');
+});

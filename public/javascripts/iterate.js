@@ -2,11 +2,23 @@ var localSuccess = 0;
 var localFailure = 0;
 var backupLeafs = [];
 var failedLeafs = [];
+var tree;
 
 function initIterate() {
-  toggleContainers();
-  v = $("#tree").jstree(true).get_json('#', { 'flat': true });
-  tree = v;
+  tree = getData();
+  $('#tree').jstree({
+    'core' : {
+      'check_callback' : true,
+      'data' : tree,
+    },
+    "search" : {
+      "case_insensitive" : true
+    },
+    "plugins": ["contextmenu", "dnd", "search", "wholerow"],
+    "contextmenu" : {
+      "items": customMenu
+    }
+  });
 };
 
 function buildChildren(node){
@@ -46,8 +58,12 @@ function isLeaf(id){
 };
 
 function iterateAll(){
+  // console.log("iterateall");
+  initIterate();
   $('#randomCheckbox').prop('checked', true); //random iteration by default
   buildLeafArray(null);
+  // console.log("leafs:");
+  // console.log(allLeafs);
   nextNode(isRandom);
 };
 
@@ -146,6 +162,7 @@ function random(){
 };
 
 function byDateInit(period){
+    initIterate();
     allLeafs = [];
     var today = convertDate(new Date());
     switch (period){
@@ -212,9 +229,10 @@ function markItem(){
 };
 
 function iterateOnNode(){ //build leaf array around one node
+  console.log("here 1");
   initIterate();
   buildLeafArray(null);
-  reduceLeafs(getTree().selected)
+  reduceLeafs(getTree().selected);
 };
 
 function reduceLeafs(selected_node){
